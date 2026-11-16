@@ -17,6 +17,6 @@
 | 6 My guardrail | 11 drugs → REFUSED 'got 11'; [] → REFUSED 'got 0'; [paracetamol] → PENDING_APPROVAL; reject → REJECTED (rejected_by set); approve after reject → REFUSED 'proposal is REJECTED' | Input size limit (GR-09) + reject_proposal | propose with 11 and 0 drugs; propose [paracetamol]; reject; approve | Page 15-18 | As expected |
 
 ## Notes
-- Exercise 6 uses the two additions to `guarded_server.py` (size limit GR-09 and `reject_proposal`), written with AI help. Log them in the AI Use Log.
+- Exercise 6 uses the two additions to `guarded_server.py` (size limit GR-09 and `reject_proposal`). They were written with AI help and are logged in the AI Use Log.
 - All exercises behaved as expected under the fake LLM provider.
 - Full evidence screenshots are in the original PDF (pages 2–18).
