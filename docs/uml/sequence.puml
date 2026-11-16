@@ -1,0 +1,28 @@
+@startuml
+title Check interactions - with guardrails
+autonumber
+actor Doctor
+participant "Web UI" as UI
+participant "Interaction agent" as AG
+participant "MCP server" as MCP
+participant "LLM adapter" as LLM
+participant "Gemini API" as GEM
+
+Doctor -> UI : enter drugs
+UI -> AG : check_interactions(drugs)
+AG -> MCP : get_drug_info / check_interaction
+MCP --> AG : results or not found
+AG -> LLM : generate summary (prompt)
+loop at most 3 attempts
+  LLM -> GEM : generateContent
+  GEM --> LLM : 200 / 429 / 5xx
+end
+alt success
+  LLM --> AG : summary + citations
+  AG --> UI : result
+else rate limit / failure
+  AG --> UI : DEGRADED message
+end
+UI --> Doctor : show result
+
+@enduml
