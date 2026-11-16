@@ -43,6 +43,10 @@ This register identifies, analyses and tracks risks that could affect the delive
 - **Medium**: mitigation planned, reviewed periodically.
 - **Low**: accepted or lightly monitored.
 
+### Visual matrix
+
+![Risk Matrix](risk-matrix.svg)
+
 ## Open actions
 1. Implement and test the retry + circuit breaker path (R-01, R-07).
 2. Add explicit tests for unknown-drug refusal (R-02).
