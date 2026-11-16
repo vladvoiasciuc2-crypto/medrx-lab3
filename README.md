@@ -10,6 +10,12 @@ UML diagrams, risks, and design for the MedRx Doctor version.
 
 [🚨 docs/risk/risk-register.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/risk/risk-register.md) – Risk register + 3×3 risk matrix.
 
+## Architecture Decision Records
+
+- [ADR-0001](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/adr/0001-llm-time-budget-and-retry-limits.md) – LLM time budget and retry limits
+- [ADR-0002](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/adr/0002-review-gate-enforced-in-backend.md) – Review gate enforced in backend
+- [ADR-0003](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/adr/0003-llm-provider-and-fallback.md) – Gemini primary + Groq fallback
+
 ## Guarded MCP Server Exercises
 
 [📄 Guarded MCP server exercises.pdf](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/guarded-server/Guarded%20MCP%20server%20exercises.pdf) – Full results with evidence (exercises 1–6).
