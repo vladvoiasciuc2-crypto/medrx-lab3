@@ -1,36 +1,57 @@
 @startuml
-title Check interactions - with guardrails and approval
+title Check interactions - with guardrails, failure path and approval
 autonumber
 actor Doctor
 participant "Web UI" as UI
+participant "Orchestrator" as ORCH
+participant "Guardrail layer" as GUARD
 participant "Interaction agent" as AG
 participant "MCP server" as MCP
 participant "LLM adapter" as LLM
 participant "Gemini API" as GEM
+participant "Groq API" as GRQ
+participant "Approval gate" as GATE
 
 Doctor -> UI : enter drugs
-UI -> AG : check_interactions(drugs)
-AG -> MCP : get_drug_info / check_interaction
-MCP --> AG : results or not found
-AG -> LLM : generate summary (prompt)
-loop at most 3 attempts (or until deadline)
-  LLM -> GEM : generateContent
-  GEM --> LLM : 200 / 429 / 5xx
-end
-alt success
-  LLM --> AG : summary + citations
-  AG --> UI : result
-  alt HIGH interaction
-    UI --> Doctor : show result + quote
-    Doctor -> UI : approve / reject
-    UI -> AG : approve_proposal / reject_proposal
-    AG --> UI : APPROVED / REJECTED
-  else no HIGH
-    UI --> Doctor : show result
+UI -> ORCH : check_interactions(drugs)
+ORCH -> GUARD : validate input (1 to 10 drugs, names in store)
+alt input refused
+  GUARD --> ORCH : REFUSED (reason)
+  ORCH --> UI : refusal message
+else input valid
+  ORCH -> AG : check(drugs)
+  AG -> MCP : get_drug_info / check_interaction
+  MCP --> AG : results or not found
+  AG -> LLM : generate summary (leaflet text as data)
+  note over LLM : circuit breaker: 3 failures in a row opens it for 60 s; while open, no call is made
+  group retry loop (max 3 attempts, timeout T, overall deadline D)
+    LLM -> GEM : generateContent
+    GEM --> LLM : 200 / 429 / 5xx
   end
-else rate limit / failure
-  AG --> UI : DEGRADED message
+  opt primary provider still failing
+    LLM -> GRQ : same request (fallback)
+    GRQ --> LLM : 200 / error
+  end
+  alt LLM answered
+    LLM --> AG : summary + citations
+    AG -> GUARD : output check (quote word for word, disclaimer)
+    GUARD --> AG : ok
+    AG --> UI : result
+    alt HIGH interaction
+      UI --> Doctor : show result + quote + source
+      Doctor -> UI : approve / reject
+      UI -> GATE : approve_proposal / reject_proposal (approver)
+      GATE --> UI : APPROVED / REJECTED (who, when)
+    else no HIGH interaction
+      UI --> Doctor : show result
+    end
+  else all attempts failed or circuit open
+    LLM --> AG : failure
+    AG --> UI : DEGRADED message + leaflet quote
+  end
 end
 UI --> Doctor : final state
+
+' Requirement IDs (spec v1.2): FR-02, FR-03, FR-07, FR-08, FR-09, FR-10, FR-11, FR-12, NFR-01, NFR-06
 
 @enduml

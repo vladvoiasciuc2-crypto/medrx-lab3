@@ -2,14 +2,17 @@
 title Interaction check - state machine (with approval)
 [*] --> Idle
 Idle --> Checking : doctor submits list
+Idle --> Refused : 0 or more than 10 drugs
+Refused --> Idle
 Checking --> Success : interactions found
 Checking --> NotFound : unknown drug / no data
-Checking --> Degraded : LLM unavailable
+Checking --> Degraded : LLM unavailable or circuit open
 Success --> PendingApproval : HIGH interaction found
 Success --> Idle : result shown (no HIGH)
-PendingApproval --> Approved : doctor acknowledges
+PendingApproval --> Approved : doctor approves
 PendingApproval --> Rejected : doctor rejects
-Approved --> Idle : schedule saved
+Approved --> Saved : schedule saved
+Saved --> Idle
 Rejected --> Idle
 NotFound --> Idle
 Degraded --> Idle
@@ -17,6 +20,14 @@ Degraded --> Idle
 note right of PendingApproval
   Model cannot approve.
   Quote + source shown.
+  No answer = stays not reviewed.
+end note
+
+note bottom of Refused
+  Code status names: REFUSED, PENDING_APPROVAL,
+  APPROVED, SAVED, REJECTED, DEGRADED.
+  The lab server's BLOCKED state is not used
+  in the doctor version (ADR-0002).
 end note
 
 @enduml

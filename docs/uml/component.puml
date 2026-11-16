@@ -8,14 +8,16 @@ package "Agents" {
   component "Orchestrator" as ORCH
   component "Interaction check agent" as CHECK
 }
-component "Guardrail layer" as GUARD
-component "LLM adapter\n(retry, circuit breaker)" as LLMA
+component "Guardrail layer\n(input check, output check)" as GUARD
+component "Approval gate\n(HIGH interaction)" as GATE
+component "LLM adapter\n(retry, timeout, circuit breaker)" as LLMA
 package "MCP servers" {
   component "drug-info server" as DRUG
   component "leaflet-RAG server" as RAG
 }
 database "Leaflet store" as VS
-cloud "Gemini API" as GEM
+cloud "Gemini API\n(primary)" as GEM
+cloud "Groq API\n(fallback)" as GRQ
 
 Doctor --> UI
 UI --> ORCH : HTTP / JSON
@@ -26,5 +28,10 @@ RAG --> VS
 CHECK --> GUARD
 GUARD --> LLMA
 LLMA --> GEM
+LLMA --> GRQ : if primary fails
+ORCH --> GATE : HIGH interaction
+UI ..> GATE : approve / reject (physician only)
+
+' Requirement IDs (spec v1.2): GUARD FR-11, FR-12; GATE FR-09, FR-10; LLMA FR-07, NFR-01, NFR-06
 
 @enduml

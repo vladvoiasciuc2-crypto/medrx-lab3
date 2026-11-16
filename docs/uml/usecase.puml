@@ -23,9 +23,12 @@ Doctor --> UC7
 Doctor --> UC8
 
 UC2 ..> UC3 : <<include>>
-UC2 ..> UC5 : <<extend>>
-UC2 ..> UC6 : <<extend>>
+UC5 ..> UC2 : <<extend>>
+UC6 ..> UC2 : <<extend>>
 UC2 --> LLM
 UC3 --> LLM
+
+' Requirement IDs (spec v1.2): UC1 FR-01; UC2 FR-02; UC3 FR-03, NFR-02; UC4 FR-04;
+' UC5 FR-05, NFR-03; UC6 FR-07, NFR-06; UC7 and UC8 FR-09, FR-10
 
 @enduml

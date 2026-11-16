@@ -12,7 +12,10 @@ node "Student laptop" as LAP {
   file ".env (API keys)" as ENV
 }
 node "Google AI Studio" as G {
-  artifact "Gemini API"
+  artifact "Gemini API (primary)"
+}
+node "Groq" as GQ {
+  artifact "Groq API (fallback)"
 }
 node "GitHub" as GH {
   artifact "repository"
@@ -21,6 +24,7 @@ WUI --> AGT : HTTP (localhost)
 AGT --> MCP : stdio
 MCP --> IDX
 AGT --> G : HTTPS
+AGT --> GQ : HTTPS (fallback)
 AGT ..> ENV : reads keys
 LAP ..> GH : git push
 
