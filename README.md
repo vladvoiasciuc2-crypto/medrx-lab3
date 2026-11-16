@@ -10,6 +10,10 @@ UML diagrams, risks, and design for the MedRx Doctor version.
 
 [🚨 docs/risk/risk-register.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/risk/risk-register.md) – Risk register + 3×3 risk matrix.
 
+## SWOT
+
+[📊 docs/swot/swot-version-D.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/swot/swot-version-D.md) – SWOT analysis mapped to risks.
+
 ## Architecture Decision Records
 
 - [ADR-0001](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/adr/0001-llm-time-budget-and-retry-limits.md) – LLM time budget and retry limits
