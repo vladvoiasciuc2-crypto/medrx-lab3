@@ -1,124 +1,27 @@
 # UML Diagrams – MedRx Doctor
 
+Rendered with PlantUML (looks like proper UML).
+
 ## Use Case
 
-```mermaid
-flowchart LR
-    Doctor((Doctor))
-    LLM((LLM provider))
-
-    subgraph MedRx[MedRx - Doctor assistant]
-        UC1[Enter drug list]
-        UC2[Check interactions]
-        UC3[Show severity + leaflet quote]
-        UC4[Show full leaflet section]
-        UC5[Handle unknown drug]
-        UC6[Handle rate limit]
-    end
-
-    Doctor --> UC1
-    Doctor --> UC2
-    Doctor --> UC4
-    UC2 --> UC3
-    UC2 -.-> UC5
-    UC2 -.-> UC6
-    UC2 --> LLM
-    UC3 --> LLM
-```
+![Use Case](https://kroki.io/plantuml/png/eNptUstuAjEMvOcrrD2BKqjK61AhhAQVPcClVXvqJdp4l4hsUhKHh6r-e51lW0D0Fntm7LGdaSDpKVZGGCwIyIHX5ZpAaY85aWcFaTIIK1Q6lykBMgTNKkvQgXf0IeXm0Jq7nJxvc7KS2kIMCLkMGIRMeTjBTZAtlyv49G6nFfoP21pgpa2Ge1h4t21n3AISYzwOx0BYTSYiuZG2ZCcZW3k5cJtTxbOdDL4EpL6pLWRPltCD8rEEw4S66Nvs4ZIyW2O-AZ2Ish42NKzeJet17fYQcIde0xHuwKAsDBJsoyNsBP0bQRGN-aOG0y4b8uCS_Cyt4qmi3Vi3t7VfXoh1BIWLVrUbzfAfTVqRl4Q8X6WJVSWPgdwY0Hs-RSMdiW_R7KrTmdQ7uAp71-FAcAq63fTuwyMfQdvcRIV8hTMyrBE8EFp1BYxugVSXvYpU7_c9ZZh_3Q_lfMuk)
 
 ## Component
 
-```mermaid
-flowchart TB
-    Doctor((Doctor))
-    UI[Web UI]
-    ORCH[Orchestrator]
-    CHECK[Interaction check agent]
-    GUARD[Guardrail layer]
-    LLMA[LLM adapter]
-    DRUG[drug-info server]
-    RAG[leaflet-RAG server]
-    VS[(Leaflet store)]
-    GEM[Gemini API]
+![Component](https://kroki.io/plantuml/png/eNplUstOwzAQvPsrVjmBRIXEkQNqlFZpoaFV2sCFyzbZBqupHdkOokL8O2sHlFRc1l7PzD4mmVqHxnWnRjjpGoKMqvwTZrp02sAESn1qtSLloJJYGzwJe5SqRb4N2NadWck17gQGXS8Xgzh6pT0UywjQ8iFaLI9YE0RxzaiN4EvAqFW0NuU7WWeQqwTNOk8Wl5SlcmS4m9QKmFweAX2twE4W8-RJfI_7px2ayqBsoMEz9UXTIs5nY9JqlQFW2HLlN3VlyJnzDZTSlJ10sDeERzLXQcrMeNgiSzZgyXyQ-b9KZbp6ItVB_zKCfJYX6SWtITw05CZ5nI6JnPIeFTrco-VOq54Glo2hwHjZirLRXcUr0kkqCfGmtzmdZ-LvM04evOvFMty8l3APi91uA7fwuF0_i_Dksd65EEPuB2WuX9Bp3dgR5CcdIz737zzQQOotDjHkwTcfepRHnJKq-M_5AScyy5k=)
 
-    Doctor --> UI
-    UI --> ORCH
-    ORCH --> CHECK
-    CHECK --> DRUG
-    CHECK --> RAG
-    RAG --> VS
-    CHECK --> GUARD
-    GUARD --> LLMA
-    LLMA --> GEM
-```
+## Sequence
 
-## Sequence (simplified)
-
-```mermaid
-sequenceDiagram
-    actor Doctor
-    participant UI as Web UI
-    participant AG as Interaction agent
-    participant MCP as MCP server
-    participant LLM as LLM adapter
-    participant GEM as Gemini API
-
-    Doctor->>UI: enter drugs
-    UI->>AG: check_interactions
-    AG->>MCP: check_interaction
-    MCP-->>AG: results / not found
-    AG->>LLM: generate summary
-    loop up to 3 attempts
-        LLM->>GEM: generateContent
-        GEM-->>LLM: 200 / 429 / 5xx
-    end
-    alt success
-        LLM-->>AG: summary
-        AG-->>UI: result
-    else failure
-        AG-->>UI: DEGRADED message
-    end
-    UI-->>Doctor: show result
-```
+![Sequence](https://kroki.io/plantuml/png/eNplkkFPAjEQhe_9FRNPELORoB70YCBANiSQEBPj0ZRlgMZtu2mngv_e14VV0ct2O_PNm9dpR1F0kGRrJUZqpsmeq3cyTjjoSox3kQo6GNnTLumwCdrUUekk3iW75qAA-UBTnxfVQMpUptFO6OqV1_QyvyIdsVym5j_ypHfspKXG5SW1nKwocvjg0KaxvcwvFkvSG93IGcD-EijZGmdovDq5KGdLdTJKxRM80SNxNkKbkHZRIYDwuES4ykN4-z2EXsv0FdKAsrNH2rG85TDAraeb_1Uqc0UnGjimWiKhvfNCW5_c5qyXT5L1HCqFKSZrdfikXhO8baSvau8b0kLWR6Fb_AkjHhW1lRDA0X4JTDw8OEE6x4vvBsPBADbvhg_43h-PimFA14J-VcXxW64z3Nm4psqIbscAJDvuxnc6kuI6MrXOa2ONQH2LZ5IC_8Gns_J5PJ1NyaIb7r01kMcO4Hwx6Lr3h054BABP8wtzh9jp)
 
 ## State Machine
 
-```mermaid
-stateDiagram-v2
-    [*] --> Idle
-    Idle --> Checking : submit list
-    Checking --> Success : found
-    Checking --> NotFound : unknown / no data
-    Checking --> Degraded : LLM unavailable
-    Success --> Idle
-    NotFound --> Idle
-    Degraded --> Idle
-```
+![State](https://kroki.io/plantuml/png/eNpV0MFqAyEQBuC7T_GfC0vvPZRASyGQ5JJjyGGi012JO4IzJq8fLcSSi-D4Of_oRo2K1TU5i5YYWzEu5C1mgV_YXzGhEWOs5Jco7E5vZ0zTJ7YhsevL3-6r2ygzPhCyt1yg9bJGU6So5sZxt8fqPas2Gv_TFL-5SniVh2w_vdpolavkuyCUOuMdkhHI6JV_81wocOe73b5doRvFRJc26DPzOXkjhbUmgy6trRtJ42mj2ahsWEL7qQeSGmab)
 
 ## Deployment
 
-```mermaid
-flowchart TB
-    subgraph Laptop[Student laptop]
-        Browser[Browser<br/>Web UI]
-        subgraph Python[Python venv]
-            Agents[agents]
-            MCP[MCP servers]
-            Store[(leaflet store)]
-        end
-        Env[.env keys]
-    end
-    Gemini[Google AI Studio<br/>Gemini API]
-    GitHub[GitHub]
-
-    Browser --> Agents
-    Agents --> MCP
-    MCP --> Store
-    Agents --> Gemini
-    Agents -.-> Env
-    Laptop -.-> GitHub
-```
+![Deployment](https://kroki.io/plantuml/png/eNplks1uwjAQhO9-ilVO4QAPwAGR_ihEKlVUoLRHBy_Eqokje0MbVbx71w4tEr0lO99kZ-zMPUlH3dEI0mQQlqhevmAMCltj-yM2BKmRFXikrh2JxiqEZEWdCoqRLdk2AenhKSvhWwAMwJ2znx5dEkcAvEHv5Y4g2WIFmyI6tpuCxfOfp-yptg2kJ2xOo0iU7__88sB7fVSzfH0jLu9LzulO6AaC3yOhJMlKet5hUO4NEniyDiNTPLxdUuw1108mvB3SrCzgA3s_5Hh8fhXnS_Xc2gNzWQHhELSNQB5zXoPkeNSNBv5KcjVqWnTVgC9ueIet9Zoz9YHng4HxeBYKwhQW63XJV2B30tTW00iEcZBD2yk34RAiPIdZaPOr5xfzKk4mk1nowTOHUvnYToRLCwIHmsJBE7Sdr8UcG8U_xA9keKCa)
 
 ---
 
-PlantUML source files are also available in the same folder (`.puml`).
+PlantUML source files (`.puml`) are also in this folder.
