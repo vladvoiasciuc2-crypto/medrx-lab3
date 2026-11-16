@@ -1,0 +1,27 @@
+@startuml
+title MedRx - deployment (lab setup)
+node "Student laptop" as LAP {
+  node "Browser" {
+    artifact "Web UI" as WUI
+  }
+  node "Python (venv)" as PY {
+    artifact "agents" as AGT
+    artifact "MCP servers" as MCP
+    database "leaflet store" as IDX
+  }
+  file ".env (API keys)" as ENV
+}
+node "Google AI Studio" as G {
+  artifact "Gemini API"
+}
+node "GitHub" as GH {
+  artifact "repository"
+}
+WUI --> AGT : HTTP (localhost)
+AGT --> MCP : stdio
+MCP --> IDX
+AGT --> G : HTTPS
+AGT ..> ENV : reads keys
+LAP ..> GH : git push
+
+@enduml
