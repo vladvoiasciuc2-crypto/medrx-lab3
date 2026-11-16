@@ -3,20 +3,20 @@
 - Status: accepted
 - Date: 2026-11-16
 - Deciders: VV, MD
-- Related: R-03, GR-10, FM-09, FR-xx (new requirement for spec v1.1); interview notes INT-7, INT-9, INT-11
+- Related: R-03, GR-10, FM-09, FR-09, FR-10 (spec v1.2); interview INT-1 (answers 7, 9, 11)
 
 ## Context and problem
-The physician is legally accountable for a prescription (INT-7) and a missed interaction is the worst outcome (INT-9).
+The physician is legally accountable for a prescription (INT-1, answer 7) and a missed interaction is the worst outcome (INT-1, answer 9).
 The Lab 3 handout says that in the doctor version the gate comes before a check is marked "reviewed" and whenever a HIGH interaction is found, with an explicit "I have reviewed this", and that the model must never be able to open the gate.
 The lab's example server blocks a HIGH interaction permanently, which was written for the patient version.
 Where is the gate enforced, and what happens with a HIGH interaction?
 
 ## Decision drivers
-- Legal responsibility stays with the physician (INT-7).
+- Legal responsibility stays with the physician (INT-1, answer 7).
 - The model must not be able to approve its own output.
 - Show the evidence next to the button, because a person who approves without seeing the sources is not a real gate (automation bias, FM-09).
 - No answer means no action: a timeout never leads to "reviewed".
-- Speed: an extra click costs time (INT-13).
+- Speed: an extra click costs time (INT-1, answer 13).
 
 ## Considered options
 1. Gate in the user interface only; the backend accepts any caller.
@@ -28,7 +28,7 @@ Chosen option 2, because option 1 can be bypassed by anything that calls the bac
 
 ## Consequences
 - Good: the model cannot approve; there is a record of who reviewed what and when; matches the handout's rules for the doctor version.
-- Bad: one extra click per check, against INT-13.
+- Bad: one extra click per check, against INT-1 (answer 13).
 - Bad: the physician may click without reading (FM-09); mitigated by showing the quote and source beside the button.
 - Bad: the lab server must be changed, since it only has a permanent BLOCKED state for HIGH interactions.
 

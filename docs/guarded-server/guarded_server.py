@@ -30,7 +30,7 @@ MAX_DELAY_S = 8.0         # never wait longer than this between attempts
 TIMEOUT_S = 30            # per-request timeout
 CB_THRESHOLD = 3          # circuit breaker opens after 3 failed calls in a row
 CB_COOLDOWN_S = 60        # ... and stays open for 60 s
-MAX_DRUGS_PER_PROPOSAL = 10   # MY GUARDRAIL (GR-09): input size limit, matches NFR-01 (up to 10 drugs)
+MAX_DRUGS_PER_PROPOSAL = 10   # MY GUARDRAIL (GR-09): input size limit, FR-12: hard limit of 10 drugs (NFR-01 targets up to 5)
 RETRYABLE = {429, 500, 502, 503, 504}
 SAFE_FALLBACK = ("The assistant is temporarily unavailable. Please read the leaflet section "
                  "directly or ask a pharmacist. (Teaching prototype - not medical advice.)")

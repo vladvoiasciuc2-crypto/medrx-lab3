@@ -3,16 +3,16 @@
 - Status: accepted
 - Date: 2026-11-16
 - Deciders: VV, MD
-- Related: NFR-01 (response time), FR-07 (DEGRADED message), R-01, R-05, R-07, GR-02, GR-03, GR-11; interview notes INT-13, INT-16
+- Related: NFR-01 (response time), FR-07 (DEGRADED message), R-01, R-05, R-07, GR-02, GR-03, GR-11; interview INT-1 (answers 13 and 16)
 
 ## Context and problem
-The physician said a check must take under 5-10 seconds (INT-13) and that the tool is not useful if it is slower (INT-16).
+The physician said a check must take under 5-10 seconds (INT-1, answer 13) and that the tool is not useful if it is slower (INT-1, answer 16).
 The lab's guarded call uses 3 attempts, waits of about 1 s and 2 s, and a 30 s timeout per request, with no overall limit.
 In the offline test with fake failures, falling back to the safe message took about 3-4 s. If the real service does not answer at all, 3 attempts x 30 s plus the waits is roughly 93 s.
 Which limits should the LLM call use so that the physician never waits longer than the agreed time, and who owns the numbers?
 
 ## Decision drivers
-- NFR-01: the result is displayed within 10 s (INT-13, INT-16).
+- NFR-01: the result is displayed within 10 s (INT-1, answers 13 and 16).
 - R-01 and R-07: free-tier rate limits and daily quota, so retries must not waste quota.
 - Safety: if the LLM step fails, show the safe fallback and never guess (GR-11).
 - Consistency: the same numbers in the specification, the sequence diagram and the code.
