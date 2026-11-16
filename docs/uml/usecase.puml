@@ -10,6 +10,8 @@ rectangle "MedRx - Doctor assistant" {
   usecase "Check interactions" as UC2
   usecase "Show severity + leaflet quote" as UC3
   usecase "Show full leaflet section" as UC4
+  usecase "Approve proposal" as UC7
+  usecase "Reject proposal" as UC8
   usecase "Handle unknown drug\n(not found)" as UC5
   usecase "Handle LLM rate limit\n(graceful error)" as UC6
 }
@@ -17,6 +19,8 @@ rectangle "MedRx - Doctor assistant" {
 Doctor --> UC1
 Doctor --> UC2
 Doctor --> UC4
+Doctor --> UC7
+Doctor --> UC8
 
 UC2 ..> UC3 : <<include>>
 UC2 ..> UC5 : <<extend>>
