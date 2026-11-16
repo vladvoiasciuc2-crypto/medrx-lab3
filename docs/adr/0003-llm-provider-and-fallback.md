@@ -1,10 +1,8 @@
-<!-- DRAFT written with AI help. Status stays "proposed" until both members agree. -->
-
 # ADR-0003: Use Gemini as primary LLM provider with Groq as fallback, behind a single adapter
 
-- Status: proposed
+- Status: accepted
 - Date: 2026-11-16
-- Deciders: <initials of both members>
+- Deciders: VV, MD
 - Related: R-01, R-07, GR-02, GR-03, NFR-01; constraint: free tiers only (course handout); see also ADR-0001
 
 ## Context and problem
@@ -25,7 +23,7 @@ How do we keep the application usable when the main provider is throttled or dow
 3. A local open-weight model.
 
 ## Decision
-Chosen option 2 (proposed): Gemini primary, Groq fallback, behind a single adapter.
+Chosen option 2: Gemini primary, Groq fallback, behind a single adapter.
 This addresses R-01 and R-07 within the free-tier constraint and without new hardware. The adapter is the one place for retries, timeouts and the circuit breaker (ADR-0001).
 
 ## Consequences
