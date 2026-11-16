@@ -1,10 +1,8 @@
-<!-- DRAFT written with AI help. Status stays "proposed" until BOTH team members agree on the decision and the numbers. Delete this note when accepted. -->
-
 # ADR-0001: Give the LLM step an overall time budget, a shorter timeout and a safe fallback
 
-- Status: proposed
+- Status: accepted
 - Date: 2026-11-16
-- Deciders: <initials of both members>
+- Deciders: VV, MD
 - Related: NFR-01 (response time), FR-07 (DEGRADED message), R-01, R-05, R-07, GR-02, GR-03, GR-11; interview notes INT-13, INT-16
 
 ## Context and problem
@@ -25,7 +23,7 @@ Which limits should the LLM call use so that the physician never waits longer th
 3. No retries: the first failure goes straight to the fallback.
 
 ## Decision
-Chosen option 2 (proposed), because it is the only option that keeps the 10 s limit in the worst case and still absorbs a brief rate-limit error (R-01).
+Chosen option 2, because it is the only option that keeps the 10 s limit in the worst case and still absorbs a brief rate-limit error (R-01).
 Values: per-attempt timeout T and overall LLM deadline D, with D below 10 s. Illustrative starting point, NOT measured: T = 4 s, D = 8 s. Set the real values after measuring response times with a real key.
 Owner of the numbers: the back-end developer. The same values must appear in the specification, the sequence diagram and the code.
 
