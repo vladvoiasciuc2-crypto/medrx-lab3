@@ -2,11 +2,10 @@
 
 UML diagrams, risks, and design for the MedRx Doctor version.
 
-## UML Diagrams (rendered)
+## UML Diagrams
 
-**See the diagrams directly here:**  
-[📊 docs/uml/README.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/uml/README.md)
+[📊 docs/uml/README.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/uml/README.md) – PlantUML diagrams rendered as images.
 
-They are written in Mermaid so GitHub renders them automatically.
+## Risks
 
-PlantUML source files (`.puml`) are also in `docs/uml/` if needed.
+[🚨 docs/risks/README.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/risks/README.md) – Risk register + risk matrix.
