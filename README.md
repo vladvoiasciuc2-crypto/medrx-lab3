@@ -9,3 +9,7 @@ UML diagrams, risks, and design for the MedRx Doctor version.
 ## Risk Management
 
 [🚨 docs/risk/risk-register.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/risk/risk-register.md) – Risk register + 3×3 risk matrix.
+
+## Guarded MCP Server Exercises
+
+[✅ docs/guarded-server/exercises-results.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/guarded-server/exercises-results.md) – Results of exercises 1–6.
