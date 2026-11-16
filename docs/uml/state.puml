@@ -1,12 +1,22 @@
 @startuml
-title Interaction check - state machine
+title Interaction check - state machine (with approval)
 [*] --> Idle
 Idle --> Checking : doctor submits list
 Checking --> Success : interactions found
 Checking --> NotFound : unknown drug / no data
 Checking --> Degraded : LLM unavailable
-Success --> Idle : result shown
+Success --> PendingApproval : HIGH interaction found
+Success --> Idle : result shown (no HIGH)
+PendingApproval --> Approved : doctor acknowledges
+PendingApproval --> Rejected : doctor rejects
+Approved --> Idle : schedule saved
+Rejected --> Idle
 NotFound --> Idle
 Degraded --> Idle
+
+note right of PendingApproval
+  Model cannot approve.
+  Quote + source shown.
+end note
 
 @enduml
