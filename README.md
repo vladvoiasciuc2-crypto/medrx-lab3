@@ -12,4 +12,6 @@ UML diagrams, risks, and design for the MedRx Doctor version.
 
 ## Guarded MCP Server Exercises
 
-[✅ docs/guarded-server/exercises-results.md](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/guarded-server/exercises-results.md) – Results of exercises 1–6.
+[📄 Guarded MCP server exercises.pdf](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/guarded-server/Guarded%20MCP%20server%20exercises.pdf) – Full results with evidence (exercises 1–6).
+
+[Summary table](https://github.com/vladvoiasciuc2-crypto/medrx-lab3/blob/main/docs/guarded-server/exercises-results.md)
