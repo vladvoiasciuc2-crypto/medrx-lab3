@@ -1,0 +1,12 @@
+@startuml
+title Interaction check - state machine
+[*] --> Idle
+Idle --> Checking : doctor submits list
+Checking --> Success : interactions found
+Checking --> NotFound : unknown drug / no data
+Checking --> Degraded : LLM unavailable
+Success --> Idle : result shown
+NotFound --> Idle
+Degraded --> Idle
+
+@enduml
