@@ -1,10 +1,8 @@
-<!-- DRAFT written with AI help. Status stays "proposed" until BOTH team members agree. Delete this note when accepted. -->
-
 # ADR-0002: Enforce the physician's review gate in the backend; a HIGH interaction needs an explicit acknowledgement
 
-- Status: proposed
+- Status: accepted
 - Date: 2026-11-16
-- Deciders: <initials of both members>
+- Deciders: VV, MD
 - Related: R-03, GR-10, FM-09, FR-xx (new requirement for spec v1.1); interview notes INT-7, INT-9, INT-11
 
 ## Context and problem
@@ -26,7 +24,7 @@ Where is the gate enforced, and what happens with a HIGH interaction?
 3. Hard block on any HIGH interaction, as in the lab's patient-version example.
 
 ## Decision
-Chosen option 2 (proposed), because option 1 can be bypassed by anything that calls the backend, including the model's tools, and option 3 takes the decision away from the physician, while the handout asks for an explicit review in the doctor version.
+Chosen option 2, because option 1 can be bypassed by anything that calls the backend, including the model's tools, and option 3 takes the decision away from the physician, while the handout asks for an explicit review in the doctor version.
 
 ## Consequences
 - Good: the model cannot approve; there is a record of who reviewed what and when; matches the handout's rules for the doctor version.
