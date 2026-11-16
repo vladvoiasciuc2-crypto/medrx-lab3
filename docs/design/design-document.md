@@ -33,17 +33,17 @@ Source: [usecase.puml](../uml/usecase.puml). Use cases: enter drug list (FR-01),
 ### 2.2 Component - covers FR-02, FR-05, FR-07, FR-09 to FR-12, NFR-01, NFR-02, NFR-06
 Shown in section 1. Source: [component.puml](../uml/component.puml).
 
-### 2.3 Sequence (critical scenario: check interactions with a failure path and the approval step) - covers FR-02, FR-03, FR-07, FR-08, FR-09, NFR-01, NFR-06
+### 2.3 Sequence (critical scenario: check interactions with a failure path and the approval step) - covers FR-02, FR-03, FR-07, FR-08, FR-09, FR-10, FR-11, FR-12, NFR-01, NFR-06
 ![Sequence](https://kroki.io/plantuml/png/eNqVVcFy20YMvfMrMLmUnkiN5KRp4854opEU2Z2kdlS7PXrWJCRtTe7Su0vL-fs-7JKSJZ_qGRsW8QA8PADUZx-UC21dZUGHimm64eKBtAnsVBG0NZ6GtNVhQ-tWudIpXfkBrWBax9QoOJQpSTWNs0-qylQbrGnre3YZ4q2jmRWTNaiiC90oE-jNP3xPt5dvSHmYQ9eVKzbsg1MIioCr5fTiELLoiVClfnBCLW4ny9kh7HLfA6k1mxCBk8Uh6tv0mjy7py4PPh76v379RqpUTegA-HzEhmttNE2uUz-L-bHf2ce9d_n90DvpdKO1Cpwgk5t5liXVaHgOgeiMWHqh0rVrn-EBHosscBQyrruX48oj6iSLAACjMkCiiC5RBLNt2kD5mIKl8SglHZBRNXv4yKMun2SqCh3S8ar1XGbUpRruqy_nX27_ms8od6y8NSfApLI97xiL7pDbYwYZV74nEPnsAs4xmL6dvgOSZ_DIiM5ozeFOHGh2Zend686BF-Swz-XYt1XwBBmNDbSyrSl3OWWsktMgGpr4tq6V-0F5xWpVcaDAz0GmAcWUMEEGJost6SIL7YpWB7pH5w_szuh9fxNRREXObsk2jPPRUtvRxxH532m70TgycUByS4WqKtKealUyqqydbRsQD6BSWdtQXqtnpFYhcN0EjCnomi3UuxlENhJesiorbZhmQpQiQZn7_GWHUwuhTIgA8Qx3GpyORlDzw-kn_P3l-RkIjjrZJlDjdJRFdlSXaN4HjYrSqTbrg2rL78jlsUSg_9jigilfgd29Kh4SLUEcV2Xn8GroK8rKxXMzfssublyXvx9pP6a30D-ouO4RlGbabzr0kQWLC0L5Yyuj21pXxjHIPwMqtS8qBS1dR2632bGOfdil3W-ybFN8LDwvLhcXdLh88iO3iYjuekF4gzVIoSCdqLwlb1tXcBdydOnpRcoQx_G_XIQXic_ju2GPucPfxsp59eD9k7zDdP1RCt11M7m-Xl79jct9hxv-Yz69kSPebuwAC8omxcRbxY7-_1ZTeJxpTCJb2q9wXB4u5Sr7G5JreD3r7pxeDWI2XywnM_Dt3inQsz_aqG-3TvJ7THGlDaTBFx5Q2U-0xKJqxzXugi5nnnLfcEFP459PT87oy3I4Oh1E8z6ZX5P5LZlP0YxHyYyTQcCf4hx39mOWfQYR-Xb9D9s_Rho=)
 
-Source: [sequence.puml](../uml/sequence.puml). Failure path: retry loop, then the DEGRADED message. Approval step: for a HIGH interaction the physician sees the result and quote, then approves or rejects.
+Source: [sequence.puml](../uml/sequence.puml). Failure path: retry loop with timeout and deadline, circuit breaker, Groq fallback, then the DEGRADED message with the leaflet quote. Approval step: for a HIGH interaction the physician sees the result and quote, then approves or rejects.
 
-### 2.4 State machine (interaction check with approval) - covers FR-05, FR-07, FR-09
+### 2.4 State machine (interaction check with approval) - covers FR-05, FR-07, FR-09, FR-12
 ![State machine](https://kroki.io/plantuml/png/eNptU8Fy2jAQvfsr9lZoQ0p7ZKaduNghtIRQk_TS6XSEtGA1tsRoJZj8fVe2cUgmF1t6fm_3-Wl1RV44H-oq8dpXCHPj0QnptTUgS5SPMAKmeIRayFIbhMFR-xLEfu_sQVTD5Pf7PzAafYW5qjCJj2Y3jVptdjABZaW3Dihsau0JKk3-mVfgNhAqpo2BSbV1CL4UBj6NQbmwo-TE6Hv0pSOyDlIiEev1s3OCrQ1GvWQurb-OKFODeTT2aJoG8BGMBSW8eEnPcOeEapwtFrcsEQehK7Fh3-xTaieD9mD3aJKThyhboVFcIu3iYfXNfHZzbq7zdi5q0piAQwqVByqjtwG7itJh8rpkVLSbxl0Xb3sgSG_SC_yH0p_TXYNQ0hdqwhRtSeKTV4E9UQSSFu7z74v1SB9tj_Tp9UhiLA-R07uSU9u-zikBuLUKK5DCMPH0N5eM_wxR-AHIBiexTSfiSwvC0BEdfIkT-kQQhQ4PGo-oLhNuEJFT54313taxdTdQXGLKLZvpDiwWNdIEivz6YZ1nF7DKl9l8OfubrlbF3a90ccH8dh2_rtPmVeTf8-l9XGX5rEizPIvO7ksEnhQgdAd07wi-Le6mP_Ksu0i6ddp50IbnHU_HwnyKMzJIs2I0Ho8_D89_5IqX8ar-B3AMNxE=)
 
 Source: [state.puml](../uml/state.puml).
 
-### 2.5 Deployment (lab setup) - covers NFR-04, NFR-05
+### 2.5 Deployment (lab setup) - covers NFR-04, NFR-05, NFR-06
 ![Deployment](https://kroki.io/plantuml/png/eNplUsluwjAQvfsrRjnBAT6AAyJdFCKVKhTocnTIABZOnNoT2qji3zt2oCB6i9_iefPiiSNpqSm1IEUaYYbFyzcMoMBam7bEiqCnZQ4Oqan7ojIFQrSgpvCMljWZOgLp4CnO4EcAdII7a74c2ihAADxBbeSaIHrDHFZpcLytUiaPf56spZ2poHfA6tAPiuzjn19uea4LbJwsb8jZfcY57QFtp-BzUBSSZC4dz9AoNxoJHBmLQZM-vJ9SbBSvHw15OvTiLIU9tq7L8fj8Ko6n1RNjtqyLU_AlKBMESch5CZJgqSoF_pZebVUpbduPLldY89nZ5rc-ZjrXRmqdy_X-2qZo2uSdcXpjtFgbp3ip1uu5WRgMxr4hGMF0ucz4H5q11DvjqC887Glf14ir4C2E__aYr-PMJyfz4oLMz9BVwsAOh2NfE9MWZeFCecK_CU9w3BFsFUHduJ0QE6wK_-B-AQ1CvNI=)
 
 Source: [deployment.puml](../uml/deployment.puml).
@@ -56,7 +56,7 @@ Source: [deployment.puml](../uml/deployment.puml).
 | Retry with backoff + Circuit Breaker + Timeout | The LLM service returns HTTP 429/5xx or does not answer; the physician needs an answer or a clear message within seconds (NFR-01, FR-07). | Inside the LLM adapter; sequence diagram 'loop at most 3 attempts (or until deadline)'; deployment diagram (external dependency). The circuit breaker appears in the component diagram and as a note in the sequence diagram. | More code and more settings to tune; retries add waiting time that competes with the 10-second limit (ADR-0001 sets a per-attempt timeout T and an overall deadline D; values still to be measured). |
 | Human-in-the-loop (approval gate) | The AI may propose a check result, but a physician is legally accountable (INT-1, answer 7), so only a person can mark a check as reviewed. | State machine (Success -> PendingApproval -> Approved / Rejected); sequence diagram (approve / reject step after a HIGH interaction); use cases 'Approve proposal' and 'Reject proposal' | One extra click per check, which costs time against INT-1 (answer 13: under 5-10 s); risk of automation bias (clicking without reading). |
 | Tool use (deterministic check by an MCP tool) | The LLM must not 'remember' interactions: a missed interaction is the worst outcome (INT-1, answer 9). A tool looks them up in the leaflet data. | MCP servers (interaction check, leaflet lookup); component diagram arrows labelled 'MCP tools' | The tool is only as complete as its data; the LLM can still mis-summarise the tool's result (needs the output check). |
-| State | A check result behaves differently in each state (pending review, reviewed, rejected); the code and the state diagram must have the same states. | State machine diagram (Idle, Checking, Success, NotFound, Degraded, PendingApproval, Approved, Rejected); status strings in the code | Extra states to maintain and test; every status string must stay in sync with the diagram. |
+| State | A check result behaves differently in each state (pending review, reviewed, rejected); the code and the state diagram must have the same states. | State machine diagram (Idle, Checking, Success, NotFound, Degraded, Refused, PendingApproval, Approved, Rejected, Saved); status strings in the code | Extra states to maintain and test; every status string must stay in sync with the diagram. |
 
 Pattern families: Adapter and State are GoF patterns (Strategy for the fallback order is behavioural); retry with backoff, circuit breaker and timeout are resilience patterns; human-in-the-loop and tool use are agentic patterns.
 
@@ -205,14 +205,14 @@ Requirement IDs follow the Product Technical Specification (v1.2 draft; FR-09 to
 | FR-07 Work on HTTP 429 | LLM adapter; ADR-0001; sequence diagram (retry loop, DEGRADED); state Degraded; use case "Handle LLM rate limit" | R-01, R-07 | GR-02, GR-03, GR-11 | T-02, T-03, T-11 |
 | FR-08 / NFR-01 Under 10 s | LLM adapter timeout and deadline (ADR-0001); drug limit; sequence diagram | R-05 | GR-02, GR-03, GR-08, GR-09 | T-14 |
 | FR-09 Review gate | Use cases Approve / Reject; states PendingApproval, Approved, Rejected; sequence approval step; ADR-0002 | R-13, R-03 | GR-10 | T-10 |
-| FR-10 Review action not callable by the model | Guardrail layer; tool list; ADR-0002 | R-13 | GR-10 | T-10 |
+| FR-10 Review action not callable by the model | Guardrail layer; approval gate component; tool list; ADR-0002 | R-13 | GR-10 | T-10 |
 | FR-11 Leaflet text as data; disclaimer | Guardrail layer (output check); prompt construction | R-11, R-12 | GR-07, GR-12 | T-07, T-12 |
-| FR-12 Limit 1 to 10 drugs | Guardrail layer (input check) | R-05, R-07 | GR-09 | T-09 |
+| FR-12 Limit 1 to 10 drugs | Guardrail layer (input check); state Refused | R-05, R-07 | GR-09 | T-09 |
 | NFR-02 Cite the leaflet section | Leaflet-RAG server; quote check | R-02 | GR-05 | T-05 |
 | NFR-03 Say "I don't know" | State NotFound; "not found in leaflets" message | R-02 | GR-06 | T-06 |
 | NFR-04 Desktop and mobile | Web UI; deployment diagram (browser) | none | none | T-15 |
 | NFR-05 Free tiers only | Deployment diagram; ADR-0003 | R-07 | GR-03, GR-11 | review of the setup |
-| NFR-06 Fallback provider | LLM adapter (Adapter + Strategy); ADR-0003; component diagram | R-01, R-07 | GR-02, GR-03 | T-13 |
+| NFR-06 Fallback provider | LLM adapter (Adapter + Strategy); ADR-0003; component, sequence and deployment diagrams | R-01, R-07 | GR-02, GR-03 | T-13 |
 
 Additional provisional tests: **T-13** a simulated 429 from the primary provider switches to the fallback; **T-14** measured response time over a set of checks with a real key (95% under 10 s for up to 5 drugs); **T-15** manual check of the UI on desktop and on a phone-sized window.
 
