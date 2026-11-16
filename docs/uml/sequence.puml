@@ -1,5 +1,5 @@
 @startuml
-title Check interactions - with guardrails
+title Check interactions - with guardrails and approval
 autonumber
 actor Doctor
 participant "Web UI" as UI
@@ -13,16 +13,24 @@ UI -> AG : check_interactions(drugs)
 AG -> MCP : get_drug_info / check_interaction
 MCP --> AG : results or not found
 AG -> LLM : generate summary (prompt)
-loop at most 3 attempts
+loop at most 3 attempts (or until deadline)
   LLM -> GEM : generateContent
   GEM --> LLM : 200 / 429 / 5xx
 end
 alt success
   LLM --> AG : summary + citations
   AG --> UI : result
+  alt HIGH interaction
+    UI --> Doctor : show result + quote
+    Doctor -> UI : approve / reject
+    UI -> AG : approve_proposal / reject_proposal
+    AG --> UI : APPROVED / REJECTED
+  else no HIGH
+    UI --> Doctor : show result
+  end
 else rate limit / failure
   AG --> UI : DEGRADED message
 end
-UI --> Doctor : show result
+UI --> Doctor : final state
 
 @enduml
