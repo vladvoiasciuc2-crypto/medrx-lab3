@@ -1,0 +1,30 @@
+@startuml
+title MedRx Doctor - component diagram
+skinparam componentStyle uml2
+
+actor Doctor
+component "Web UI" as UI
+package "Agents" {
+  component "Orchestrator" as ORCH
+  component "Interaction check agent" as CHECK
+}
+component "Guardrail layer" as GUARD
+component "LLM adapter\n(retry, circuit breaker)" as LLMA
+package "MCP servers" {
+  component "drug-info server" as DRUG
+  component "leaflet-RAG server" as RAG
+}
+database "Leaflet store" as VS
+cloud "Gemini API" as GEM
+
+Doctor --> UI
+UI --> ORCH : HTTP / JSON
+ORCH --> CHECK
+CHECK --> DRUG : MCP tools
+CHECK --> RAG : MCP tools
+RAG --> VS
+CHECK --> GUARD
+GUARD --> LLMA
+LLMA --> GEM
+
+@enduml
