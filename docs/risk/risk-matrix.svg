@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" fill="#ffffff"/>
+  <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">Risk Matrix – MedRx Doctor</text>
+  <text x="450" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">Probability</text>
+
+  <!-- Column headers -->
+  <text x="280" y="110" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">Low</text>
+  <text x="450" y="110" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">Medium</text>
+  <text x="620" y="110" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">High</text>
+
+  <!-- Row labels -->
+  <text x="90" y="175" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" transform="rotate(-90 90 175)">High</text>
+  <text x="90" y="275" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" transform="rotate(-90 90 275)">Medium</text>
+  <text x="90" y="375" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" transform="rotate(-90 90 375)">Low</text>
+  <text x="40" y="275" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" transform="rotate(-90 40 275)">Impact</text>
+
+  <!-- High Impact row -->
+  <rect x="190" y="130" width="150" height="90" fill="#ffe082" stroke="#333"/>
+  <text x="265" y="170" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-03</text>
+  <text x="265" y="188" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-06</text>
+
+  <rect x="350" y="130" width="150" height="90" fill="#ff8a65" stroke="#333"/>
+  <text x="425" y="170" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-02</text>
+  <text x="425" y="188" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-07</text>
+
+  <rect x="510" y="130" width="150" height="90" fill="#ef9a9a" stroke="#333"/>
+
+  <!-- Medium Impact row -->
+  <rect x="190" y="230" width="150" height="90" fill="#fff9c4" stroke="#333"/>
+
+  <rect x="350" y="230" width="150" height="90" fill="#fff176" stroke="#333"/>
+  <text x="425" y="260" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-04  R-05</text>
+  <text x="425" y="278" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-08  R-09</text>
+
+  <rect x="510" y="230" width="150" height="90" fill="#ffb74d" stroke="#333"/>
+  <text x="585" y="275" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-01</text>
+
+  <!-- Low Impact row -->
+  <rect x="190" y="330" width="150" height="90" fill="#a5d6a7" stroke="#333"/>
+  <text x="265" y="375" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">R-10</text>
+
+  <rect x="350" y="330" width="150" height="90" fill="#c8e6c9" stroke="#333"/>
+  <rect x="510" y="330" width="150" height="90" fill="#fff9c4" stroke="#333"/>
+
+  <!-- Legend -->
+  <rect x="250" y="450" width="20" height="20" fill="#a5d6a7" stroke="#333"/>
+  <text x="280" y="465" font-family="Arial, sans-serif" font-size="13">Low</text>
+  <rect x="350" y="450" width="20" height="20" fill="#fff176" stroke="#333"/>
+  <text x="380" y="465" font-family="Arial, sans-serif" font-size="13">Medium</text>
+  <rect x="480" y="450" width="20" height="20" fill="#ff8a65" stroke="#333"/>
+  <text x="510" y="465" font-family="Arial, sans-serif" font-size="13">High</text>
+</svg>
